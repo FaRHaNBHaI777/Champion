@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>FARHAN WITH CHAMPION</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+html,body{
+width:100%;
+height:100%;
+overflow-x:hidden;
+display:flex;
+justify-content:center;
+background:#050505;
+}
+
+.container{
+width:100%;
+max-width:420px;
+padding:15px;
+color:white;
+}
+
+/* GLOWING HEADER LOGO WITH WHATSAPP NUMBER (GOLDEN/ORANGE) */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 10px #ff9900, 0 0 20px #ff9900, inset 0 0 10px #ff9900; border-color: #ff9900; }
+    50% { box-shadow: 0 0 25px #ffb300, 0 0 40px #ff6600, inset 0 0 15px #ff6600; border-color: #ffcc00; }
+    100% { box-shadow: 0 0 10px #ff9900, 0 0 20px #ff9900, inset 0 0 10px #ff9900; border-color: #ff9900; }
+}
+
+.glowing-header{
+width:100%;
+padding:14px;
+text-align:center;
+background:rgba(20, 20, 20, 0.95);
+border: 2px solid #ff9900;
+border-radius: 14px;
+animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+.header-title {
+font-size: 21px;
+font-weight: 900;
+color: #ffffff;
+letter-spacing: 1.5px;
+text-shadow: 0 0 10px #ff9900, 0 0 20px #ff6600;
+white-space: nowrap;
+}
+
+.header-whatsapp {
+font-size: 13px;
+font-weight: bold;
+color: #00ff66;
+margin-top: 6px;
+text-shadow: 0 0 8px rgba(0, 255, 102, 0.6);
+letter-spacing: 0.5px;
+cursor: pointer;
+}
+
+.header-whatsapp a {
+color: #00ff66;
+text-decoration: none;
+}
+
+/* GENERAL CARDS (GOLDEN THEME) */
+.card{
+background:#111111;
+border: 1px solid #332200;
+border-radius:15px;
+padding:18px;
+margin-top:15px;
+box-shadow: 0 0 20px rgba(255, 153, 0, 0.15);
+}
+
+/* INPUT */
+input{
+width:100%;
+padding:14px;
+border:1px solid #553300;
+border-radius:10px;
+background:#050505;
+color:#ff9900;
+text-align:center;
+margin-top:10px;
+font-size: 16px;
+outline: none;
+box-shadow: inset 0 0 8px rgba(255, 153, 0, 0.2);
+}
+
+input:focus {
+border-color: #ff9900;
+box-shadow: 0 0 12px rgba(255, 153, 0, 0.5);
+}
+
+/* RED ERROR ALERT */
+.error-alert {
+color: #ff3333;
+background: rgba(255, 51, 51, 0.1);
+border: 1px solid #ff3333;
+padding: 10px;
+border-radius: 8px;
+margin-top: 10px;
+text-align: center;
+font-weight: bold;
+font-size: 15px;
+display: none;
+box-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
+}
+
+/* BUTTONS */
+button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+margin-top:12px;
+font-weight:bold;
+background:linear-gradient(135deg, #ffaa00, #cc5500);
+color:#fff;
+cursor: pointer;
+font-size: 15px;
+text-shadow: 0 1px 3px #000;
+box-shadow: 0 0 15px rgba(255, 153, 0, 0.4);
+transition: transform 0.1s ease;
+}
+
+button:active {
+transform: scale(0.97);
+}
+
+.back-btn {
+background: #1a1205 !important;
+border: 1px solid #ff9900 !important;
+color: #ff9900 !important;
+box-shadow: 0 0 10px rgba(255, 153, 0, 0.2) !important;
+margin-top: 10px;
+}
+
+/* SQUARE BUTTONS GRID FOR MODES */
+.mode-grid {
+display: flex;
+gap: 12px;
+margin-top: 15px;
+}
+
+.square-btn {
+flex: 1;
+aspect-ratio: 1 / 1;
+background: #080808;
+border: 2px solid #442200;
+border-radius: 14px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+transition: all 0.3s ease;
+box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+}
+
+.square-btn:active {
+border-color: #ff9900;
+background: #261400;
+box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
+transform: scale(0.96);
+}
+
+.square-btn .mode-title {
+font-size: 20px;
+font-weight: bold;
+color: #ff9900;
+text-shadow: 0 0 8px rgba(255, 153, 0, 0.6);
+}
+
+.square-btn .mode-sub {
+font-size: 11px;
+color: #aaa;
+margin-top: 6px;
+}
+
+/* DASHBOARDS DISPLAY CONTROL */
+#midDashboard, #periodDashboard, #dashboard{
+display:none;
+}
+
+/* MATCHED GOLDEN/BLACK THEME FOR FINAL DASHBOARD CARDS */
+.golden-card {
+background: #0d0902;
+border: 1.5px solid #ff9900;
+border-radius: 15px;
+padding: 18px;
+margin-top: 15px;
+box-shadow: 0 0 25px rgba(255, 153, 0, 0.2);
+}
+
+.golden-card h3 {
+color: #ff9900 !important;
+text-shadow: 0 0 10px rgba(255, 153, 0, 0.7) !important;
+}
+
+/* PERIOD TEXT: SOLID WHITE, BOLD & BIGGER */
+.period{
+text-align:center;
+font-size:22px;
+font-weight: 900;
+color: #ffffff;
+letter-spacing: 0.5px;
+}
+
+#period {
+color: #ffffff !important;
+font-weight: 900 !important;
+font-size: 24px;
+text-shadow: none !important;
+}
+
+/* TIMER: CLEAN, BOLD SOLID WHITE (NO GLOW) */
+#timer{
+font-size:72px;
+text-align:center;
+color:#ffffff;
+font-weight: 900;
+letter-spacing: 2px;
+margin: 8px 0;
+text-shadow: none !important;
+}
+
+/* RESULT TEXT */
+#result{
+font-size:36px;
+text-align:center;
+margin-top:10px;
+font-weight: 900;
+letter-spacing: 2px;
+}
+
+/* COLOR CLASSES FOR BIG / SMALL */
+.res-big {
+color: #00ff66 !important;
+text-shadow: 0 0 15px rgba(0, 255, 102, 0.8) !important;
+}
+
+.res-small {
+color: #ff3333 !important;
+text-shadow: 0 0 15px rgba(255, 51, 51, 0.8) !important;
+}
+
+/* HISTORY STYLING (GOLDEN MATCHED BORDER) */
+.history-item{
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding:12px 14px;
+background:#0a0701;
+border-left: 4px solid #ff9900;
+margin-top:8px;
+border-radius:8px;
+font-size:14px;
+color: #eee;
+box-shadow: inset 0 0 8px rgba(255, 153, 0, 0.1);
+}
+
+.win-badge {
+color: #00ff66;
+font-weight: bold;
+text-shadow: 0 0 10px rgba(0, 255, 102, 0.7);
+}
+
+.loss-badge {
+color: #ff3333;
+font-weight: bold;
+text-shadow: 0 0 10px rgba(255, 51, 51, 0.7);
+}
+
+/* RED DEPOSIT WARNING POPUP WITH DYNAMIC GREEN BLINKING AMOUNT */
+.deposit-modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.85);
+z-index: 999999;
+justify-content: center;
+align-items: center;
+padding: 20px;
+}
+
+.deposit-modal-content {
+background: linear-gradient(135deg, #ff1744, #b71c1c);
+color: #ffffff;
+padding: 18px 16px;
+border-radius: 14px;
+text-align: center;
+font-size: 14px;
+font-weight: bold;
+line-height: 1.6;
+box-shadow: 0 0 25px rgba(255, 23, 68, 0.8);
+border: 2px solid #ff5252;
+animation: popAnim 0.3s ease-out;
+max-width: 320px;
+}
+
+@keyframes popAnim {
+0% { transform: scale(0.8); opacity: 0; }
+100% { transform: scale(1); opacity: 1; }
+}
+
+/* BLINKING GREEN AMOUNT EFFECT */
+@keyframes greenPulseEffect {
+0% { opacity: 1; text-shadow: 0 0 12px #00ff66, 0 0 20px #00ff66; }
+50% { opacity: 0.4; text-shadow: 0 0 4px #00ff66; }
+100% { opacity: 1; text-shadow: 0 0 12px #00ff66, 0 0 20px #00ff66; }
+}
+
+.green-highlight {
+color: #00ff66;
+font-size: 16px;
+font-weight: 900;
+background: rgba(0, 0, 0, 0.4);
+padding: 2px 6px;
+border-radius: 6px;
+border: 1px solid #00ff66;
+display: inline-block;
+animation: greenPulseEffect 0.8s infinite ease-in-out;
+}
+
+/* PERFECT CIRCLE GREEN GLOWING WHATSAPP BUTTON */
+@keyframes greenGlowPulse {
+    0% { box-shadow: 0 0 10px #25d366, 0 0 20px #25d366, inset 0 0 8px #ffffff; }
+    50% { box-shadow: 0 0 22px #00ff66, 0 0 35px #00ff66, inset 0 0 12px #ffffff; }
+    100% { box-shadow: 0 0 10px #25d366, 0 0 20px #25d366, inset 0 0 8px #ffffff; }
+}
+
+/* BOTTOM AREA ONLY AUTO-ORBIT ANIMATION (STAYS IN LOWER HALF OF SCREEN) */
+@keyframes autoBottomOrbit {
+    0%   { top: calc(100% - 150px); left: 20px; }
+    25%  { top: calc(100% - 150px); left: calc(100% - 78px); }
+    50%  { top: calc(100% - 78px); left: calc(100% - 78px); }
+    75%  { top: calc(100% - 78px); left: 20px; }
+    100% { top: calc(100% - 150px); left: 20px; }
+}
+
+.float{
+position:fixed;
+width:58px;
+height:58px;
+top: calc(100% - 150px);
+left: 20px;
+z-index:99999;
+touch-action:none;
+cursor: grab;
+border-radius: 50%;
+background: #25d366;
+display: flex;
+align-items: center;
+justify-content: center;
+animation: autoBottomOrbit 16s linear infinite, greenGlowPulse 2s infinite ease-in-out;
+border: 2px solid #ffffff;
+}
+
+.float img {
+width: 32px;
+height: 32px;
+object-fit: contain;
+display: block;
+pointer-events: none;
+}
+
+/* GREEN GLOWING MANUAL LOCKED BADGE */
+.status-badge {
+font-size: 11px;
+color: #00ff66;
+background: rgba(0, 255, 102, 0.1);
+padding: 3px 8px;
+border-radius: 10px;
+border: 1px solid rgba(0, 255, 102, 0.4);
+display: inline-block;
+margin-top: 5px;
+text-shadow: 0 0 8px rgba(0, 255, 102, 0.6);
+font-weight: bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- GLOWING HEADER LOGO WITH DIRECT WHATSAPP CHAT LINK -->
+<div class="glowing-header">
+  <div class="header-title">FARHAN WITH CHAMPION</div>
+  <div class="header-whatsapp">
+    <a href="https://wa.me/923293036312" target="_blank">WhatsApp: Official Number +923293036312</a>
+  </div>
+</div>
+
+<!-- STEP 1: LOGIN -->
+<div class="card" id="loginPage">
+
+<button onclick="window.open('https://92champion.com/#/register?invitationCode=996672936779')">
+OPEN GAME LINK
+</button>
+
+<button onclick="window.open('https://whatsapp.com/channel/0029VbAydkC42DcYD0Axzr3Q')">
+JOIN WHATSAPP CHANNEL
+</button>
+
+<h3 style="text-align:center;margin-top:20px;color:#ff9900;font-size:16px;text-shadow:0 0 8px rgba(255,153,0,0.5);">ENTER PASSWORD</h3>
+
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="checkPassword()">UNLOCK VIP HACK</button>
+
+</div>
+
+<!-- STEP 2: ENTER GAME UID SCREEN -->
+<div class="card" id="midDashboard">
+
+<h3 style="text-align:center;color:#ff9900;font-size:18px;text-shadow:0 0 8px rgba(255,153,0,0.5);">ENTER GAME UID</h3>
+
+<input type="number" id="gameUid" placeholder="Enter 7 Digit Game UID" oninput="if(this.value.length > 7) this.value = this.value.slice(0, 7);">
+
+<!-- RED ERROR ALERT -->
+<div id="uidError" class="error-alert">UID WRONG</div>
+
+<p style="text-align:center;margin-top:18px;color:#fff;font-weight:bold;font-size:14px;">SELECT SIGNAL MODE</p>
+
+<div class="mode-grid">
+  <div class="square-btn" onclick="validateAndSelectMode(30)">
+    <span class="mode-title">30 SEC</span>
+    <span class="mode-sub">Manual Sync</span>
+  </div>
+  <div class="square-btn" onclick="validateAndSelectMode(60)">
+    <span class="mode-title">1 MIN</span>
+    <span class="mode-sub">Manual Sync</span>
+  </div>
+</div>
+
+</div>
+
+<!-- STEP 2.5: ENTER PERIOD NUMBER SCREEN -->
+<div class="card" id="periodDashboard">
+
+<h3 style="text-align:center;color:#ff9900;font-size:18px;text-shadow:0 0 8px rgba(255,153,0,0.5);">ENTER PERIOD NUMBER</h3>
+
+<input type="number" id="startPeriod" placeholder="Enter Current Period (e.g. 688)">
+
+<button onclick="submitPeriodAndNext()">NEXT</button>
+<button class="back-btn" onclick="goBackToStep2()">BACK</button>
+
+</div>
+
+<!-- STEP 3: FINAL DASHBOARD (GOLDEN THEME MATCHED) -->
+<div id="dashboard">
+
+<div class="golden-card">
+
+<div class="period">
+Period : <span id="period">--</span>
+<br>
+<span class="status-badge" id="syncStatus">MANUAL LOCKED ✓</span>
+</div>
+
+<div id="timer">--</div>
+
+<div id="result">WAITING</div>
+
+</div>
+
+<div class="golden-card">
+
+<h3 style="text-align:center;margin-bottom:8px;">LIVE HACK HISTORY</h3>
+
+<div id="history">
+  <p style="text-align:center; color:#997744; font-size:13px; margin: 10px 0;">Waiting for period completion...</p>
+</div>
+
+<button class="back-btn" onclick="goBackToStep2()">BACK</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- RED DEPOSIT WARNING POPUP WITH DYNAMIC GREEN BLINKING AMOUNT -->
+<div id="depositModal" class="deposit-modal">
+  <div class="deposit-modal-content">
+    ⚠️ Low Deposit Warning!<br>
+    100% Win Signal ke liye <span class="green-highlight" id="dynamicDepositAmount">Rs 5,000</span> deposit karein,<br>
+    warna aapka VIP Hack sahi kaam nahi karega.
+  </div>
+</div>
+
+<!-- FLOATING GREEN GLOWING WHATSAPP BUTTON (LOWER AREA MOVEMENT) -->
+<a href="https://wa.me/923293036312" target="_blank" id="waLink">
+  <div id="waBtn" class="float">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </div>
+</a>
+
+<script>
+
+/* SYSTEM VARIABLES */
+let selectedTimerMode = 30; // 30 or 60
+let userBasePeriod = 0;
+let periodOffset = 0;
+let historyData = [];
+let timerInterval = null;
+let currentPrediction = "";
+let lastProcessedPeriod = null;
+
+/* GENERATE RANDOM DEPOSIT AMOUNT BETWEEN 5000 AND 10000 */
+function getRandomDepositAmount() {
+  let min = 50;
+  let max = 100;
+  let randomFactor = Math.floor(Math.random() * (max - min + 1)) + min;
+  let amount = randomFactor * 100;
+  return "Rs " + amount.toLocaleString();
+}
+
+/* STEP 1: PASSWORD CHECK */
+function checkPassword(){
+if(password.value==="700"){
+loginPage.style.display="none";
+midDashboard.style.display="block";
+}else{
+alert("Wrong Password!");
+}
+}
+
+/* STEP 2: UID VALIDATION & MODE SELECTION */
+function validateAndSelectMode(seconds){
+let uid = document.getElementById("gameUid").value.trim();
+let errorBox = document.getElementById("uidError");
+
+// Exact 7-digit validation
+if(uid.length !== 7 || isNaN(uid)){
+errorBox.style.display = "block";
+return;
+}
+
+errorBox.style.display = "none";
+selectedTimerMode = seconds;
+
+// Set dynamic random amount in popup each time
+document.getElementById("dynamicDepositAmount").innerText = getRandomDepositAmount();
+
+// Show Red Deposit Popup
+let modal = document.getElementById("depositModal");
+modal.style.display = "flex";
+
+// Hide Popup after 3.5 seconds and open Period Entry screen
+setTimeout(() => {
+modal.style.display = "none";
+midDashboard.style.display = "none";
+periodDashboard.style.display = "block";
+}, 3500);
+}
+
+/* STEP 2.5: SUBMIT PERIOD & OPEN DASHBOARD */
+function submitPeriodAndNext(){
+let periodInput = document.getElementById("startPeriod").value.trim();
+
+if(periodInput === "" || isNaN(periodInput)){
+alert("Please Enter Period Number!");
+return;
+}
+
+userBasePeriod = parseInt(periodInput);
+
+// Calculate exact time offset
+let epochSec = Math.floor(Date.now() / 1000);
+let currentBlock = Math.floor(epochSec / selectedTimerMode);
+periodOffset = userBasePeriod - currentBlock;
+
+// Open Dashboard directly
+periodDashboard.style.display = "none";
+dashboard.style.display = "block";
+
+startManualSyncEngine();
+}
+
+/* START MANUAL PRECISION SYNC ENGINE WITH 70% WIN / 30% LOSS RATIO */
+function startManualSyncEngine() {
+  if(timerInterval) clearInterval(timerInterval);
+
+  currentPrediction = generateHackSignal();
+  updateResultDisplay(currentPrediction);
+
+  timerInterval = setInterval(() => {
+    let epochSec = Math.floor(Date.now() / 1000);
+    
+    // Remaining Timer Countdown
+    let remainingTime = selectedTimerMode - (epochSec % selectedTimerMode);
+    if (remainingTime === 0) {
+      remainingTime = selectedTimerMode;
+    }
+
+    document.getElementById("timer").innerText = remainingTime;
+
+    // Active Period calculation locked to clock blocks + user offset
+    let currentBlock = Math.floor(epochSec / selectedTimerMode);
+    let activePeriod = currentBlock + periodOffset;
+
+    document.getElementById("period").innerText = activePeriod;
+
+    // Period Change Detection
+    if (lastProcessedPeriod !== activePeriod) {
+      if (lastProcessedPeriod !== null) {
+        
+        // 70% Win & 30% Loss Random Logic Algorithm
+        let isWin = Math.random() < 0.70; 
+        let outcomeStatus = isWin ? 'WIN' : 'LOSS';
+
+        historyData.unshift({
+          period: lastProcessedPeriod,
+          pred: currentPrediction,
+          status: outcomeStatus
+        });
+
+        if(historyData.length > 5) historyData.pop();
+        renderHistory();
+      }
+
+      lastProcessedPeriod = activePeriod;
+      currentPrediction = generateHackSignal();
+      updateResultDisplay(currentPrediction);
+    }
+  }, 1000);
+}
+
+/* UPDATE RESULT DISPLAY WITH COLOR LOGIC (BIG = GREEN, SMALL = RED) */
+function updateResultDisplay(pred) {
+  let resultElem = document.getElementById("result");
+  if (pred === "BIG") {
+    resultElem.innerHTML = `<span class="res-big">BIG</span>`;
+  } else if (pred === "SMALL") {
+    resultElem.innerHTML = `<span class="res-small">SMALL</span>`;
+  } else {
+    resultElem.innerHTML = pred;
+  }
+}
+
+/* RANDOM SIGNAL GENERATOR */
+function generateHackSignal(){
+let arr=["BIG","SMALL"];
+return arr[Math.floor(Math.random()*arr.length)];
+}
+
+/* RENDER HISTORY (DYNAMIC GREEN WIN / RED LOSS) */
+function renderHistory(){
+if(historyData.length === 0){
+  document.getElementById("history").innerHTML = `<p style="text-align:center; color:#997744; font-size:13px; margin: 10px 0;">Waiting for period completion...</p>`;
+  return;
+}
+
+document.getElementById("history").innerHTML = historyData.map(item => {
+  let colorClass = item.pred === 'BIG' ? '#00ff66' : '#ff3333';
+  let badgeClass = item.status === 'WIN' ? 'win-badge' : 'loss-badge';
+  
+  return `
+    <div class="history-item">
+      <span>Period ${item.period} → <b style="color:${colorClass};">${item.pred}</b></span>
+      <span class="${badgeClass}">${item.status}</span>
+    </div>
+  `;
+}).join("");
+}
+
+/* BACK BUTTON FUNCTION */
+function goBackToStep2(){
+if(timerInterval) clearInterval(timerInterval);
+dashboard.style.display = "none";
+periodDashboard.style.display = "none";
+midDashboard.style.display = "block";
+document.getElementById("uidError").style.display = "none";
+}
+
+/* DRAGGABLE & AUTO MOVING WHATSAPP BUTTON LOGIC */
+const waBtn = document.getElementById('waBtn');
+let isDragging = false;
+let initialX, initialY;
+let hasMoved = false;
+
+waBtn.addEventListener('touchstart', dragStart, {passive: false});
+waBtn.addEventListener('touchmove', drag, {passive: false});
+waBtn.addEventListener('touchend', dragEnd);
+
+waBtn.addEventListener('mousedown', dragStart);
+window.addEventListener('mousemove', drag);
+window.addEventListener('mouseup', dragEnd);
+
+function dragStart(e) {
+  isDragging = true;
+  hasMoved = false;
+  
+  // Stop auto orbit animation when user touches or drags icon
+  waBtn.style.animation = 'greenGlowPulse 2s infinite ease-in-out';
+  
+  let clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+  let clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+  
+  initialX = clientX - waBtn.getBoundingClientRect().left;
+  initialY = clientY - waBtn.getBoundingClientRect().top;
+}
+
+function drag(e) {
+  if (!isDragging) return;
+  hasMoved = true;
+  e.preventDefault();
+  
+  let clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+  let clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+  
+  let currentX = clientX - initialX;
+  let currentY = clientY - initialY;
+  
+  waBtn.style.left = currentX + 'px';
+  waBtn.style.top = currentY + 'px';
+  waBtn.style.right = 'auto';
+  waBtn.style.position = 'fixed';
+}
+
+function dragEnd() {
+  isDragging = false;
+}
+
+document.getElementById('waLink').addEventListener('click', function(e) {
+  if (hasMoved) {
+    e.preventDefault();
+  }
+});
+
+</script>
+
+</body>
+</html>
